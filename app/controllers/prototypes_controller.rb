@@ -23,14 +23,14 @@ class PrototypesController < ApplicationController
   def edit 
     @prototype = Prototype.find(params[:id])
     if @prototype.user == current_user
-      render action: :edit
+      render templete: "prototypes/edit" 
     else
       redirect_to root_path
     end
   end
   def update
-    prototype = Prototype.find(params[:id])
-    if prototype.update(prototype_params)
+    @prototype = Prototype.find(params[:id])
+    if @prototype.update(prototype_params)
       redirect_to prototype_path(params[:id])
     else 
       render :edit
